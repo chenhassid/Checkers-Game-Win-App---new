@@ -1,5 +1,4 @@
-﻿
-namespace GameLogic
+﻿namespace GameLogic
 {
      public class Square
     {
