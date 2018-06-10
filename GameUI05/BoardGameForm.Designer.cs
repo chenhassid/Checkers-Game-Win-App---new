@@ -41,7 +41,6 @@ namespace GameUI05
             this.labelPlayer1.TabIndex = 0;
             this.labelPlayer1.Font = new Font("Arial", 8F, FontStyle.Bold, GraphicsUnit.Point, (byte)0);
             this.labelPlayer1.Click += new System.EventHandler(this.label1_Click);
-
             this.labelPlayer1.Text = m_Player1Name + ": 0";
             this.Controls.Add(this.labelPlayer1);
 
