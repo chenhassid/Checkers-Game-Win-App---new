@@ -98,8 +98,5 @@
       <Name>GameLogic</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Content Include="checkers.jpg" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
