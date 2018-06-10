@@ -182,12 +182,12 @@ namespace GameUI05
             if (m_Game.GameStatus == GameManager.eGameStatus.Draw)
             {
                 string drawMsg = "Tie!" + Environment.NewLine + "Another Round?";
-                isAnotherRound = MessageBox.Show(drawMsg, "Damke", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                isAnotherRound = MessageBox.Show(drawMsg, "Damka", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
             else
             {
                 string winMsg = (sender as Player).Name + " Won!" + Environment.NewLine + "Another Round?";
-                isAnotherRound = MessageBox.Show(winMsg, "Damke", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                isAnotherRound = MessageBox.Show(winMsg, "Damka", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
 
             if (isAnotherRound == DialogResult.No)
