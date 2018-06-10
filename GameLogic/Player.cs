@@ -7,7 +7,6 @@
             X,
             O,
         }
-
         public enum ePlayerType
         {
             Person,
@@ -41,7 +40,6 @@
                 m_PlayerType = value;
             }
         }
-
         public int Points
         {
             get
@@ -54,7 +52,6 @@
                 m_Points = value;
             }
         }
-
         internal bool IsJumpTurn
         {
             get

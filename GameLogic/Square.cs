@@ -28,7 +28,6 @@
             this.m_Row = i_Row;
             this.m_Column = i_Column;
         }
-
         public eSquareType Type
         {
             get
@@ -51,7 +50,6 @@
         {
             get { return m_Column; }
         }
-
         public static string ToStringSqureType(eSquareType i_Type)
         {
             string squareTypeString = string.Empty;

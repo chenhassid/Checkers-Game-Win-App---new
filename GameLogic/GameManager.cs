@@ -10,7 +10,6 @@ namespace GameLogic
         public event EventHandler MakeMove;
 
         public event EventHandler EndGameRound;
-
         public enum eGameStatus
         {
             Winner,
@@ -39,7 +38,6 @@ namespace GameLogic
             m_BoardGame.BuildBoard();
             m_LegalJumps = new List<Move>();
         }
-
         public GameManager(string i_Player1, short i_BoardSize)
         {
             m_GameStatus = eGameStatus.NotFinished;
@@ -67,7 +65,6 @@ namespace GameLogic
 
             return isContainsMove;
         }
-
         public Player Player1
         {
             get
@@ -83,18 +80,15 @@ namespace GameLogic
                 return this.m_Player2;
             }
         }
-
         public BoardGame GetBoardGame()
         {
             return this.m_BoardGame;
         }
-
         public eGameStatus GameStatus
         {
             get { return this.m_GameStatus; }
             set { this.m_GameStatus = value; }
         }
-
         public void GameRound(Move i_CurrentMove)
         {
             i_CurrentMove.FromSquare = m_BoardGame.GetSquare(i_CurrentMove.FromSquare.Row, i_CurrentMove.FromSquare.Column);
@@ -128,7 +122,6 @@ namespace GameLogic
             }
 
             checkGameStatus();
-
             if (this.m_GameStatus != eGameStatus.NotFinished)
             {
                 if (this.m_GameStatus == eGameStatus.Winner)
@@ -141,7 +134,6 @@ namespace GameLogic
                 }
             }
         }
-
         private void checkGameStatus()
         {
             List<Move> diagonalMovesOfPlayer1 = m_BoardGame.GetListOfPlayerDiagonalMoves(Player.eShapeType.X);
@@ -170,7 +162,6 @@ namespace GameLogic
                 }
             }
         }
-
         internal void PlayComputerTurn()
         {
             List<Move> computerJumpsMoves = m_BoardGame.GetListOfPlayerJumps(Player.eShapeType.O);
@@ -212,7 +203,6 @@ namespace GameLogic
 
             v_Turn = !v_Turn;
         }
-
         private void playCurrentPlayerTurn(Move i_CurrentMove, Player i_PlayerTurn, Player i_NotPlayerTurn)
         {
             bool isValid = isValidMove(i_CurrentMove, i_PlayerTurn);
@@ -243,14 +233,12 @@ namespace GameLogic
                 }
             }
         }
-
         private bool hasAnotherJump(Move i_CurrentMove, Player i_PlayerTurn)
         {
             List<Move> playerSecondJumps = getListOfJumpsForPiece(i_PlayerTurn.GetShapeType(), i_CurrentMove.ToSquare);
 
             return (playerSecondJumps.Count > 0) ? true : false;
         }
-
         public bool isValidMove(Move i_CurrentMove, Player i_PlayerTurn)
         {
             bool isValid = false;
