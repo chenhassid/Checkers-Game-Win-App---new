@@ -42,6 +42,18 @@ namespace GameLogic
             m_LegalJumps = new List<Move>();
         }
 
+        public GameManager(string i_Player1, short i_BoardSize)
+        {
+            m_GameStatus = eGameStatus.NotFinished;
+            v_Turn = true;
+            m_Player1 = new Player(Player.eShapeType.X, i_Player1, Player.ePlayerType.Person);
+            m_Player2 = new Player(Player.eShapeType.O, "Computer", Player.ePlayerType.Computer);
+            m_BoardSize = i_BoardSize;
+            m_BoardGame = new BoardGame(m_BoardSize);
+            m_BoardGame.BuildBoard();
+            m_LegalJumps = new List<Move>();
+        }
+
         private static bool isContainsMoveElement(List<Move> i_ListOfMoves, Move i_currentMove)
         {
             bool isContainsMove = false;
@@ -56,18 +68,6 @@ namespace GameLogic
             }
 
             return isContainsMove;
-        }
-
-        public GameManager(string i_Player1, short i_BoardSize)
-        {
-            m_GameStatus = eGameStatus.NotFinished;
-            v_Turn = true;
-            m_Player1 = new Player(Player.eShapeType.X, i_Player1, Player.ePlayerType.Person);
-            m_Player2 = new Player(Player.eShapeType.O, "Computer", Player.ePlayerType.Computer);
-            m_BoardSize = i_BoardSize;
-            m_BoardGame = new BoardGame(m_BoardSize);
-            m_BoardGame.BuildBoard();
-            m_LegalJumps = new List<Move>();
         }
 
         public Player Player1
@@ -120,14 +120,19 @@ namespace GameLogic
                     }
                 }
 
-                if (!v_Turn)
+                checkGameStatus();
+                if (this.m_GameStatus == eGameStatus.NotFinished)
                 {
-                    if (m_Player2.PlayerType == Player.ePlayerType.Computer)
+                    if (!v_Turn)
                     {
-                        playComputerTurn();
-                        checkGameStatus();
+                        if (m_Player2.PlayerType == Player.ePlayerType.Computer)
+                        {
+                            playComputerTurn();
+                            checkGameStatus();
+                        }
                     }
                 }
+
             }
 
             checkGameStatus();
@@ -163,7 +168,7 @@ namespace GameLogic
                 if (diagonalMovesOfPlayer1.Count == 0 && jumpsMovesOfPlayer1.Count == 0 || m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType()) == 0)
                 {
                     this.m_GameStatus = eGameStatus.Lose;
-                    m_Player2.Points = m_Player2.Points + m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType()) - m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType());
+                    m_Player2.Points = m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType()) - m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType());
                 }
 
                 else
@@ -171,7 +176,7 @@ namespace GameLogic
                     if (diagonalMovesOfPlayer2.Count == 0 && jumpsMovesOfPlayer2.Count == 0 || m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType()) == 0)
                     {
                         this.m_GameStatus = eGameStatus.Winner;
-                        m_Player1.Points = m_Player1.Points + m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType()) - m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType());
+                        m_Player1.Points = m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType()) - m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType());
                     }
                 }
             }
