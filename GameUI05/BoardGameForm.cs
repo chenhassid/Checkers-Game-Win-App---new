@@ -147,16 +147,8 @@ namespace GameUI05
             Move currentMove = sender as Move;
             SquareButton toButton = Squares[currentMove.ToSquare.Row, currentMove.ToSquare.Column];
             SquareButton fromButton = Squares[currentMove.FromSquare.Row, currentMove.FromSquare.Column];
-            Square fromSquare = CurrentMove.FromSquare;
-            Square toSquare = CurrentMove.ToSquare;
-
-            Console.WriteLine("from square row:" + fromSquare.Row);
-            Console.WriteLine("from square column" + fromSquare.Column);
-            Console.WriteLine("from square type" + fromSquare.Type);
-
-            Console.WriteLine("to square row:" + toSquare.Row);
-            Console.WriteLine("to square column" + toSquare.Column);
-            Console.WriteLine("to square type:" + toSquare.Type);
+            Square fromSquare = currentMove.FromSquare;
+            Square toSquare = currentMove.ToSquare;
 
             if (currentMove.MoveType == GameLogic.Move.eTypeOfMove.Jump)
             {

@@ -160,14 +160,14 @@ namespace GameLogic
                 {
                     this.m_GameStatus = eGameStatus.Lose;
 
-                    m_Player2.Points = m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType()) - m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType());
+                    m_Player2.Points = (m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType()) - m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType()));
                 }
                 else
                 {
                     if ((diagonalMovesOfPlayer2.Count == 0 && jumpsMovesOfPlayer2.Count == 0) || (m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType()) == 0))
                     {
                         this.m_GameStatus = eGameStatus.Winner;
-                        m_Player1.Points = m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType()) - m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType());
+                        m_Player1.Points = (m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType()) - m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType()));
                     }
                 }
             }
@@ -208,8 +208,8 @@ namespace GameLogic
                 int indexOfDiagonalMove = s_Random.Next(0, lengthOfListDiagonal);
                 currentMoveForComputer = computerDiagonalMoves[indexOfDiagonalMove];
                 currentMoveForComputer.MoveType = Move.eTypeOfMove.Regular;
-                currentMoveForComputer.MoveOnBoard(m_BoardGame);
                 MakeMove.Invoke(currentMoveForComputer, EventArgs.Empty);
+                currentMoveForComputer.MoveOnBoard(m_BoardGame);
             }
 
             v_Turn = !v_Turn;
