@@ -137,6 +137,8 @@
             // 
             // textBoxPlayer2
             // 
+            this.textBoxPlayer2.AcceptsReturn = true;
+            this.textBoxPlayer2.AcceptsTab = true;
             this.textBoxPlayer2.Enabled = false;
             this.textBoxPlayer2.Location = new System.Drawing.Point(199, 191);
             this.textBoxPlayer2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -144,6 +146,7 @@
             this.textBoxPlayer2.Size = new System.Drawing.Size(164, 26);
             this.textBoxPlayer2.TabIndex = 9;
             this.textBoxPlayer2.Text = "[Computer]";
+            this.textBoxPlayer2.TextChanged += new System.EventHandler(this.textBoxPlayer2_TextChanged);
             // 
             // buttonDone
             // 

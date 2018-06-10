@@ -132,5 +132,9 @@ namespace GameUI05
         private void StartGameForm_Load(object sender, EventArgs e)
         {
         }
+
+        private void textBoxPlayer2_TextChanged(object sender, EventArgs e)
+        {
+        }
     }
 }

@@ -99,8 +99,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="blackPlayer.png" />
+    <Content Include="checkers.jpg" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
