@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GameLogic
+﻿namespace GameLogic
 {
     public class Move
     {
@@ -33,7 +27,11 @@ namespace GameLogic
 
         public eTypeOfMove MoveType
         {
-            get { return m_TypeOfMove; }
+            get
+            {
+                return m_TypeOfMove;
+            }
+
             set
             {
                 m_TypeOfMove = value;

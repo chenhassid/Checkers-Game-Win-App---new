@@ -31,7 +31,11 @@
 
         public eSquareType Type
         {
-            get { return m_Type; }
+            get
+            {
+                return m_Type;
+            }
+
             set
             {
                 m_Type = value;

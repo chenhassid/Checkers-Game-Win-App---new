@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace GameLogic
 {
@@ -26,17 +25,6 @@ namespace GameLogic
         {
             get { return m_Size; }
         }
-
-        /*
-        internal Square.eSquareType StatusType
-        {
-            get { return this.StatusType; }
-            set
-            {
-                this.StatusType = value;
-            }
-        }
-        */
 
         internal short GetSize()
         {
@@ -161,7 +149,6 @@ namespace GameLogic
             return typeToReturn;
         }
 
-        // $G$ DSN-003 (-10) This method is too long. 
         internal List<Move> GetListOfPlayerDiagonalMoves(Player.eShapeType i_Shape)
         {
             List<Move> leggalMoves = new List<Move>();

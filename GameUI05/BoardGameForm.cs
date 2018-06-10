@@ -11,7 +11,7 @@ using GameLogic;
 
 namespace GameUI05
 {
-    public partial class BoardGameForm : Form
+     partial class BoardGameForm : Form
     {
         internal const int k_Margin = 50;
         private GameManager m_Game;
@@ -23,7 +23,7 @@ namespace GameUI05
         internal string m_Player1Name;
         internal string m_Player2Name;
 
-        public BoardGameForm(StartGameForm i_StartGameForm)
+         public BoardGameForm(StartGameForm i_StartGameForm)
         {
             m_StartGameForm = i_StartGameForm;
             m_Size = m_StartGameForm.BoardSize;
@@ -34,7 +34,7 @@ namespace GameUI05
             v_IsComputerGame = !m_StartGameForm.CheckBoxPlayer2.Checked;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new Size((SizeBoard * k_Margin - 8), (SizeBoard * k_Margin + k_Margin));
+            this.ClientSize = new Size(SizeBoard * k_Margin - 8, SizeBoard * k_Margin + k_Margin);
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
         }
 
