@@ -20,10 +20,10 @@
         private bool v_JumpTurn;
         private int m_Points;
 
-        public Player(eShapeType shape, string PlayerName, ePlayerType i_PlayerType)
+        public Player(eShapeType i_Shape, string i_PlayerName, ePlayerType i_PlayerType)
         {
-            this.m_Shape = shape;
-            this.m_PlayerName = PlayerName;
+            this.m_Shape = i_Shape;
+            this.m_PlayerName = i_PlayerName;
             v_JumpTurn = false;
             this.m_PlayerType = i_PlayerType;
             this.m_Points = 0;

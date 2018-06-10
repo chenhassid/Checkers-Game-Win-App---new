@@ -100,10 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="blackPlayer.png" />
-    <Content Include="redPlayer.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

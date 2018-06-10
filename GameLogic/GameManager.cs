@@ -52,13 +52,13 @@ namespace GameLogic
             m_LegalJumps = new List<Move>();
         }
 
-        private static bool isContainsMoveElement(List<Move> i_ListOfMoves, Move i_currentMove)
+        private static bool isContainsMoveElement(List<Move> i_ListOfMoves, Move i_CurrentMove)
         {
             bool isContainsMove = false;
 
             foreach (Move m in i_ListOfMoves)
             {
-                if (i_currentMove.IsEqualsTo(m))
+                if (i_CurrentMove.IsEqualsTo(m))
                 {
                     isContainsMove = true;
                     break;
@@ -95,7 +95,7 @@ namespace GameLogic
             set { this.m_GameStatus = value; }
         }
 
-        public void gameRound(Move i_CurrentMove)
+        public void GameRound(Move i_CurrentMove)
         {
             i_CurrentMove.FromSquare = m_BoardGame.GetSquare(i_CurrentMove.FromSquare.Row, i_CurrentMove.FromSquare.Column);
             i_CurrentMove.ToSquare = m_BoardGame.GetSquare(i_CurrentMove.ToSquare.Row, i_CurrentMove.ToSquare.Column);
@@ -121,14 +121,12 @@ namespace GameLogic
                     {
                         if (m_Player2.PlayerType == Player.ePlayerType.Computer)
                         {
-                            playComputerTurn();
-                            // checkGameStatus();
+                            PlayComputerTurn();
                         }
                     }
                 }
             }
 
-            // shouldn't call checkGameStatus() twice (points are doubled)
             checkGameStatus();
 
             if (this.m_GameStatus != eGameStatus.NotFinished)
@@ -160,35 +158,20 @@ namespace GameLogic
                 if ((diagonalMovesOfPlayer1.Count == 0 && jumpsMovesOfPlayer1.Count == 0) || (m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType()) == 0))
                 {
                     this.m_GameStatus = eGameStatus.Lose;
-<<<<<<< HEAD
-
                     m_Player2.Points = (m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType()) - m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType()));
-=======
-                    int pointsToAdd = m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType()) - m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType());
-                    m_Player2.Points = pointsToAdd;
-                    // m_Player2.Points += pointsToAdd; 
-                    //should be += and shouldn't call checkGameStatus() twice
->>>>>>> 2e962eab46d53870cdcd4450bac7640b8a9918a6
                 }
                 else
                 {
                     if ((diagonalMovesOfPlayer2.Count == 0 && jumpsMovesOfPlayer2.Count == 0) || (m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType()) == 0))
                     {
                         this.m_GameStatus = eGameStatus.Winner;
-<<<<<<< HEAD
                         m_Player1.Points = (m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType()) - m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType()));
-=======
-                        int pointsToAdd = m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType()) - m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType());
-                        m_Player1.Points = pointsToAdd;
-                        // m_Player1.Points += pointsToAdd;
-                        //should be += and shouldn't call checkGameStatus() twice
->>>>>>> 2e962eab46d53870cdcd4450bac7640b8a9918a6
                     }
                 }
             }
         }
 
-        public void playComputerTurn()
+        internal void PlayComputerTurn()
         {
             List<Move> computerJumpsMoves = m_BoardGame.GetListOfPlayerJumps(Player.eShapeType.O);
             int lengthOfJumpsList = computerJumpsMoves.Count;

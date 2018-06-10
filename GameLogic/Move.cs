@@ -101,11 +101,11 @@
                         {
                             if (m_FromSquare.Type == Square.eSquareType.X)
                             {
-                                isValidMove = isValidDiagonalMove(Player.eShapeType.X);
+                                isValidMove = IsValidDiagonalMove(Player.eShapeType.X);
                             }
                             else
                             {
-                                isValidMove = isValidDiagonalKingMove(Player.eShapeType.X);
+                                isValidMove = IsValidDiagonalKingMove(Player.eShapeType.X);
                             }
                         }
                     }
@@ -128,11 +128,11 @@
                         {
                             if (m_FromSquare.Type == Square.eSquareType.O)
                             {
-                                isValidMove = isValidDiagonalMove(Player.eShapeType.O);
+                                isValidMove = IsValidDiagonalMove(Player.eShapeType.O);
                             }
                             else
                             {
-                                isValidMove = isValidDiagonalKingMove(Player.eShapeType.O);
+                                isValidMove = IsValidDiagonalKingMove(Player.eShapeType.O);
                             }
                         }
                     }
@@ -143,7 +143,7 @@
             return isValidMove;
         }
 
-        public bool isValidDiagonalMove(Player.eShapeType i_Shape)
+        internal bool IsValidDiagonalMove(Player.eShapeType i_Shape)
         {
             bool isValidMove = false;
 
@@ -179,7 +179,7 @@
             return isValidMove;
         }
 
-        public bool isValidDiagonalKingMove(Player.eShapeType i_ShapeOfMove)
+        internal bool IsValidDiagonalKingMove(Player.eShapeType i_ShapeOfMove)
         {
             bool isValidKingMove = false;
 
@@ -234,7 +234,7 @@
                     break;
 
                 case eTypeOfMove.Jump:
-                    capturePieceOnBoard(i_BoardGame);
+                    CapturePieceOnBoard(i_BoardGame);
 
                     if (fromSquare.Type == Square.eSquareType.X && toSquare.Row == 0)
                     {
@@ -255,11 +255,9 @@
                     fromSquare.Type = Square.eSquareType.None;
                     break;
             }
-
-         //   i_BoardGame.PrintBoard();
         }
 
-        public void capturePieceOnBoard(BoardGame i_BoardGame)
+        internal void CapturePieceOnBoard(BoardGame i_BoardGame)
         {
             int rowOfCapturPiece = 0;
             int columnOfCapturPiece = 0;

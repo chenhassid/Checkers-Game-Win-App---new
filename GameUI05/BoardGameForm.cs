@@ -1,17 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using GameLogic;
 
 namespace GameUI05
 {
-     partial class BoardGameForm : Form
+  internal partial class BoardGameForm : Form
     {
         internal const int k_Margin = 50;
         private GameManager m_Game;
@@ -23,7 +17,7 @@ namespace GameUI05
         internal string m_Player1Name;
         internal string m_Player2Name;
 
-         public BoardGameForm(StartGameForm i_StartGameForm)
+        public BoardGameForm(StartGameForm i_StartGameForm)
         {
             m_StartGameForm = i_StartGameForm;
             m_Size = m_StartGameForm.BoardSize;
@@ -134,7 +128,7 @@ namespace GameUI05
 
             if ((CurrentMove.FromSquare != null) && (CurrentMove.ToSquare != null))
             {
-                m_Game.gameRound(CurrentMove);
+                m_Game.GameRound(CurrentMove);
                 Squares[CurrentMove.FromSquare.Row, CurrentMove.FromSquare.Column].BackColor = Color.White;
                 CurrentMove.FromSquare = null;
                 CurrentMove.ToSquare = null;
