@@ -51,7 +51,7 @@ namespace GameLogic
         internal void BuildBoard()
         {
             {
-                for (int i = 0; i < this.m_Size / 2 - 1; i++)
+                for (int i = 0; i < (this.m_Size / 2 - 1); i++)
                 {
                     for (int j = 0; j < this.m_Size; j++)
                     {
@@ -62,7 +62,6 @@ namespace GameLogic
                                 m_Board[i, j].Type = Square.eSquareType.O;
                             }
                         }
-
                         else
                         {
                             if (j % 2 == 1)
@@ -84,7 +83,6 @@ namespace GameLogic
                                 m_Board[i, j].Type = Square.eSquareType.X;
                             }
                         }
-
                         else
                         {
                             if (j % 2 == 1)
@@ -155,7 +153,6 @@ namespace GameLogic
             {
                 typeToReturn = Square.eSquareType.Invalid;
             }
-
             else
             {
                 typeToReturn = this.m_Board[i_Row, i_Column].Type;
@@ -178,7 +175,7 @@ namespace GameLogic
                     {
                         case Player.eShapeType.O:
                             // Regular piece of O
-                            if (getTypeOfSquareInBoard(r, c) == Square.eSquareType.O) 
+                            if (getTypeOfSquareInBoard(r, c) == Square.eSquareType.O)
                             {
                                 if (getTypeOfSquareInBoard(r + 1, c - 1) == Square.eSquareType.None)
                                 {
@@ -192,7 +189,7 @@ namespace GameLogic
                             }
 
                             // King of O
-                            if (getTypeOfSquareInBoard(r, c) == Square.eSquareType.U) 
+                            if (getTypeOfSquareInBoard(r, c) == Square.eSquareType.U)
                             {
                                 if (getTypeOfSquareInBoard(r + 1, c - 1) == Square.eSquareType.None)
                                 {
@@ -219,7 +216,7 @@ namespace GameLogic
 
                         // regular piece for X
                         case Player.eShapeType.X:
-                            if (getTypeOfSquareInBoard(r, c) == Square.eSquareType.X) 
+                            if (getTypeOfSquareInBoard(r, c) == Square.eSquareType.X)
                             {
                                 if (getTypeOfSquareInBoard(r - 1, c - 1) == Square.eSquareType.None)
                                 {
@@ -233,7 +230,7 @@ namespace GameLogic
                             }
 
                             // King of X
-                            if (getTypeOfSquareInBoard(r, c) == Square.eSquareType.K) 
+                            if (getTypeOfSquareInBoard(r, c) == Square.eSquareType.K)
                             {
                                 if (getTypeOfSquareInBoard(r + 1, c - 1) == Square.eSquareType.None)
                                 {
@@ -266,7 +263,6 @@ namespace GameLogic
 
         public List<Move> GetListOfPlayerJumps(Player.eShapeType i_Shape)
         {
-
             List<Move> leggalJumps = new List<Move>();
             short boardSize = this.GetSize();
 
@@ -279,7 +275,7 @@ namespace GameLogic
                         case Player.eShapeType.O:
 
                             // regular piece of O
-                            if (getTypeOfSquareInBoard(r, c) == Square.eSquareType.O) 
+                            if (getTypeOfSquareInBoard(r, c) == Square.eSquareType.O)
                             {
                                 if ((getTypeOfSquareInBoard(r + 2, c - 2) == Square.eSquareType.None) && (getTypeOfSquareInBoard(r + 1, c - 1) == Square.eSquareType.X || getTypeOfSquareInBoard(r + 1, c - 1) == Square.eSquareType.K))
                                 {
@@ -293,7 +289,7 @@ namespace GameLogic
                             }
 
                             // King of O
-                            if (getTypeOfSquareInBoard(r, c) == Square.eSquareType.U) 
+                            if (getTypeOfSquareInBoard(r, c) == Square.eSquareType.U)
                             {
                                 if ((getTypeOfSquareInBoard(r + 2, c - 2) == Square.eSquareType.None) && (getTypeOfSquareInBoard(r + 1, c - 1) == Square.eSquareType.X || getTypeOfSquareInBoard(r + 1, c - 1) == Square.eSquareType.K))
                                 {
@@ -321,7 +317,7 @@ namespace GameLogic
                         case Player.eShapeType.X:
 
                             // regular piece of X
-                            if (getTypeOfSquareInBoard(r, c) == Square.eSquareType.X) 
+                            if (getTypeOfSquareInBoard(r, c) == Square.eSquareType.X)
                             {
                                 if ((getTypeOfSquareInBoard(r - 2, c - 2) == Square.eSquareType.None) && (getTypeOfSquareInBoard(r - 1, c - 1) == Square.eSquareType.O || getTypeOfSquareInBoard(r - 1, c - 1) == Square.eSquareType.U))
                                 {
@@ -335,7 +331,7 @@ namespace GameLogic
                             }
 
                             // king of X
-                            if (getTypeOfSquareInBoard(r, c) == Square.eSquareType.K) 
+                            if (getTypeOfSquareInBoard(r, c) == Square.eSquareType.K)
                             {
                                 if ((getTypeOfSquareInBoard(r + 2, c - 2) == Square.eSquareType.None) && (getTypeOfSquareInBoard(r + 1, c - 1) == Square.eSquareType.O || getTypeOfSquareInBoard(r + 1, c - 1) == Square.eSquareType.U))
                                 {
@@ -366,7 +362,7 @@ namespace GameLogic
             return leggalJumps;
         }
 
-
+        /*
         public void PrintBoard()
         {
             StringBuilder stringBuilderBoard = new StringBuilder();
@@ -382,7 +378,7 @@ namespace GameLogic
             for (int i = 0; i < this.m_Size; i++)
             {
                 stringBuilderBoard.Append(" ");
-                for (int k = 0; k < this.m_Size * 4 + 1; k++)
+                for (int k = 0; k < (this.m_Size * 4 + 1); k++)
                 {
                     stringBuilderBoard.Append("=");
                 }
@@ -400,14 +396,13 @@ namespace GameLogic
             }
 
             stringBuilderBoard.Append(" ");
-            for (int k = 0; k < this.m_Size * 4 + 1; k++)
+            for (int k = 0; k < (this.m_Size * 4 + 1); k++)
             {
                 stringBuilderBoard.Append("=");
             }
-            System.Console.WriteLine(stringBuilderBoard.ToString());
 
+            System.Console.WriteLine(stringBuilderBoard.ToString());
         }
+        */
     }
 }
-
-

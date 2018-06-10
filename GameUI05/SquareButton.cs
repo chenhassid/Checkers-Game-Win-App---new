@@ -9,11 +9,10 @@ using System.Windows.Forms;
 using GameLogic;
 
 namespace GameUI05
-{ 
-
-   public class SquareButton : Button
+{
+    public class SquareButton : Button
     {
-        const int k_SquareSize = 50;
+        internal const int k_SquareSize = 50;
         internal Square.eSquareType m_Type;
         internal int m_Row;
         internal int m_Column;
@@ -41,7 +40,6 @@ namespace GameUI05
             get { return m_Column; }
         }
 
-        
         public SquareButton(Square.eSquareType i_SquareType, int i_Row, int i_Column)
         {
             this.ClientSize = new Size(k_SquareSize, k_SquareSize);
@@ -67,7 +65,6 @@ namespace GameUI05
                     this.Text = " ";
                     break;
             }
-      
         }
     }
 }

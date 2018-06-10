@@ -8,10 +8,10 @@ namespace GameUI05
 {
     internal partial class BoardGameForm : Form
     {
-
         private System.ComponentModel.IContainer components = null;
 
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -68,18 +68,6 @@ namespace GameUI05
             this.Load += new System.EventHandler(this.BoardGame_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
-
-            /*   this.Name = "BoardGameForm";
-               this.Text = "Damka";
-               this.Load += new System.EventHandler(this.BoardGame_Load);
-               this.ResumeLayout(false);
-               this.PerformLayout();
-               */
-
-
-
-
         }
 
         internal void InitBoard()
@@ -183,13 +171,10 @@ namespace GameUI05
                         }
                     }
                 }
-
-
             }
         }
         private Label labelPlayer1;
         private Label labelPlayer2;
-
     }
 
     #endregion

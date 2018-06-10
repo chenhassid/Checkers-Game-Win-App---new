@@ -11,7 +11,7 @@ using GameLogic;
 
 namespace GameUI05
 {
-    partial class BoardGameForm : Form
+    public partial class BoardGameForm : Form
     {
         internal const int k_Margin = 50;
         private GameManager m_Game;
@@ -34,7 +34,7 @@ namespace GameUI05
             v_IsComputerGame = !m_StartGameForm.CheckBoxPlayer2.Checked;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(SizeBoard * k_Margin - 8, SizeBoard * k_Margin + k_Margin);
+            this.ClientSize = new Size((SizeBoard * k_Margin - 8), (SizeBoard * k_Margin + k_Margin));
             this.FormBorderStyle = FormBorderStyle.Fixed3D;
         }
 
@@ -55,13 +55,13 @@ namespace GameUI05
 
             registerEvents();
         }
+
         public StartGameForm GetStartGameForm
         {
             get
             {
                 return m_StartGameForm;
             }
-
         }
 
         public Move CurrentMove
@@ -118,7 +118,6 @@ namespace GameUI05
             {
                 button.BackColor = Color.AliceBlue;
                 CurrentMove.FromSquare = new Square(row, col);
-
             }
             else
             {
@@ -141,7 +140,6 @@ namespace GameUI05
                 CurrentMove.ToSquare = null;
                 CurrentMove = null;
             }
-
         }
 
         public void makeMove(object sender, EventArgs e)
@@ -160,7 +158,6 @@ namespace GameUI05
             Console.WriteLine("to square column" + toSquare.Column);
             Console.WriteLine("to square type:" + toSquare.Type);
 
-
             if (currentMove.MoveType == GameLogic.Move.eTypeOfMove.Jump)
             {
                 int captureRow = fromButton.Row > toButton.Row ? fromButton.Row - 1 : fromButton.Row + 1;
@@ -174,7 +171,7 @@ namespace GameUI05
             }
             else
             {
-                if (fromSquare.Type == Square.eSquareType.O && toSquare.Row == m_Size - 1)
+                if ((fromSquare.Type == Square.eSquareType.O) && toSquare.Row == m_Size - 1)
                 {
                     toButton.Text = "U";
                 }
@@ -201,7 +198,6 @@ namespace GameUI05
                 string drawMsg = "Tie!" + Environment.NewLine + "Another Round?";
                 isAnotherRound = MessageBox.Show(drawMsg, "Damke", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             }
-
             else
             {
                 string winMsg = (sender as Player).Name + " Won!" + Environment.NewLine + "Another Round?";
@@ -228,146 +224,118 @@ namespace GameUI05
             this.OnLoad(EventArgs.Empty);
             this.labelPlayer1.Text = m_Player1Name + ": " + player1Points;
             this.labelPlayer2.Text = m_Player2Name + ": " + player2Points;
-
         }
+
         private void BoardGame_Load(object sender, EventArgs e)
         {
-
         }
 
         private void label1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button5_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button10_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button12_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button14_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-
         }
 
         private void button16_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button22_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button28_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button20_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button26_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button18_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button24_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button32_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button40_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button34_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button42_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button30_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button36_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button45_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button53_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button49_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button38_Click(object sender, EventArgs e)
         {
-
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-
         }
     }
 }

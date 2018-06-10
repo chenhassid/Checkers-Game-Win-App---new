@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
 namespace GameLogic
 {
     public class GameManager
     {
         public event EventHandler InvalidMove;
+
         public event EventHandler MakeMove;
+
         public event EventHandler EndGameRound;
 
         public enum eGameStatus
@@ -102,16 +103,12 @@ namespace GameLogic
             i_CurrentMove.FromSquare = m_BoardGame.GetSquare(i_CurrentMove.FromSquare.Row, i_CurrentMove.FromSquare.Column);
             i_CurrentMove.ToSquare = m_BoardGame.GetSquare(i_CurrentMove.ToSquare.Row, i_CurrentMove.ToSquare.Column);
 
-            Console.WriteLine("in game:from square type:" + i_CurrentMove.FromSquare.Type);
-            Console.WriteLine("to square type:" + i_CurrentMove.ToSquare.Type);
-
             if (this.m_GameStatus == eGameStatus.NotFinished)
             {
                 if (v_Turn)
                 {
                     playCurrentPlayerTurn(i_CurrentMove, m_Player1, m_Player2);
                 }
-
                 else
                 {
                     if (m_Player2.PlayerType == Player.ePlayerType.Person)
@@ -132,7 +129,6 @@ namespace GameLogic
                         }
                     }
                 }
-
             }
 
             checkGameStatus();
@@ -143,7 +139,6 @@ namespace GameLogic
                 {
                     EndGameRound.Invoke(Player1, EventArgs.Empty);
                 }
-
                 else
                 {
                     EndGameRound.Invoke(Player2, EventArgs.Empty);
@@ -162,18 +157,17 @@ namespace GameLogic
             {
                 this.m_GameStatus = eGameStatus.Draw;
             }
-
             else
             {
-                if (diagonalMovesOfPlayer1.Count == 0 && jumpsMovesOfPlayer1.Count == 0 || m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType()) == 0)
+                if ((diagonalMovesOfPlayer1.Count == 0 && jumpsMovesOfPlayer1.Count == 0) || (m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType()) == 0))
                 {
                     this.m_GameStatus = eGameStatus.Lose;
+
                     m_Player2.Points = m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType()) - m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType());
                 }
-
                 else
                 {
-                    if (diagonalMovesOfPlayer2.Count == 0 && jumpsMovesOfPlayer2.Count == 0 || m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType()) == 0)
+                    if ((diagonalMovesOfPlayer2.Count == 0 && jumpsMovesOfPlayer2.Count == 0) || (m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType()) == 0))
                     {
                         this.m_GameStatus = eGameStatus.Winner;
                         m_Player1.Points = m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType()) - m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType());
@@ -181,7 +175,6 @@ namespace GameLogic
                 }
             }
         }
-
 
         public void playComputerTurn()
         {
@@ -205,14 +198,12 @@ namespace GameLogic
                         computerJumpsMoves = getListOfJumpsForPiece(m_Player2.GetShapeType(), currentMoveForComputer.ToSquare);
                         lengthOfJumpsList = computerJumpsMoves.Count;
                     }
-
                     else
                     {
                         break;
                     }
                 }
             }
-
             else
             {
                 List<Move> computerDiagonalMoves = m_BoardGame.GetListOfPlayerDiagonalMoves(Player.eShapeType.O);
@@ -226,74 +217,6 @@ namespace GameLogic
 
             v_Turn = !v_Turn;
         }
-        /*
-        // $G$ CSS-013 (-3) Input parameters names should start with i_PascaleCase.
-        private bool checkForQuitting(Player i_playerTurn, Player i_notPlayerTurn)
-        {
-            int playerTurnPoint = m_BoardGame.GetPointsOfPlayer(i_playerTurn.GetShapeType());
-            int NotplayerTurnPoint = m_BoardGame.GetPointsOfPlayer(i_notPlayerTurn.GetShapeType());
-            bool isValidQuit = (playerTurnPoint <= NotplayerTurnPoint);
-
-            if (isValidQuit)
-            {
-                if (playerTurnPoint == NotplayerTurnPoint)
-                {
-                    m_GameStatus = eGameStatus.Draw;
-                }
-                else
-                {
-                    if (i_playerTurn.GetShapeType() == Player.eShapeType.X)
-                    {
-
-                        m_GameStatus = eGameStatus.Lose;
-                    }
-                    else
-                    {
-                        m_GameStatus = eGameStatus.Winner;
-                    }
-
-                    i_notPlayerTurn.Points += NotplayerTurnPoint - playerTurnPoint;
-                }
-
-                GameUI.PrintGamePointStatus(this);
-            }
-
-            return isValidQuit;
-        }
-        */
-        /*
-        private void checkGameStatus()
-        {
-            List<Move> diagonalMovesOfPlayer1 = m_BoardGame.GetListOfPlayerDiagonalMoves(Player.eShapeType.X);
-            List<Move> diagonalMovesOfPlayer2 = m_BoardGame.GetListOfPlayerDiagonalMoves(Player.eShapeType.O);
-            List<Move> jumpsMovesOfPlayer1 = m_BoardGame.GetListOfPlayerJumps(Player.eShapeType.X);
-            List<Move> jumpsMovesOfPlayer2 = m_BoardGame.GetListOfPlayerJumps(Player.eShapeType.O);
-
-            if (diagonalMovesOfPlayer1.Count == 0 && diagonalMovesOfPlayer2.Count == 0 && jumpsMovesOfPlayer1.Count == 0 && jumpsMovesOfPlayer2.Count == 0)
-            {
-                this.m_GameStatus = eGameStatus.Draw;
-                GameUI.PrintGamePointStatus(this);
-            }
-            else
-            {
-                if (diagonalMovesOfPlayer1.Count == 0 && jumpsMovesOfPlayer1.Count == 0 || m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType()) == 0)
-                {
-                    this.m_GameStatus = eGameStatus.Lose;
-                    m_Player2.Points = m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType()) - m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType());
-                    GameUI.PrintGamePointStatus(this);
-                }
-                else
-                {
-                    if (diagonalMovesOfPlayer2.Count == 0 && jumpsMovesOfPlayer2.Count == 0 || m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType()) == 0)
-                    {
-                        this.m_GameStatus = eGameStatus.Winner;
-                        m_Player1.Points = m_BoardGame.GetPointsOfPlayer(m_Player1.GetShapeType()) - m_BoardGame.GetPointsOfPlayer(m_Player2.GetShapeType());
-                        GameUI.PrintGamePointStatus(this);
-                    }
-                }
-            }
-        }
-        */
 
         private void playCurrentPlayerTurn(Move i_CurrentMove, Player i_PlayerTurn, Player i_NotPlayerTurn)
         {
@@ -302,7 +225,6 @@ namespace GameLogic
             {
                 InvalidMove.Invoke(this, EventArgs.Empty);
             }
-
             else
             {
                 MakeMove.Invoke(i_CurrentMove, EventArgs.Empty);
@@ -314,7 +236,6 @@ namespace GameLogic
                     {
                         m_LegalJumps = getListOfJumpsForPiece(i_PlayerTurn.GetShapeType(), i_CurrentMove.ToSquare);
                     }
-
                     else
                     {
                         v_Turn = !v_Turn;
@@ -347,7 +268,6 @@ namespace GameLogic
                     i_CurrentMove.MoveType = Move.eTypeOfMove.Jump;
                 }
             }
-
             else
             {
                 List<Move> playerJumpMoves = m_BoardGame.GetListOfPlayerJumps(i_PlayerTurn.GetShapeType());
@@ -360,15 +280,12 @@ namespace GameLogic
                         i_CurrentMove.MoveType = Move.eTypeOfMove.Jump;
                         i_PlayerTurn.IsJumpTurn = true;
                     }
-
                     else
                     {
                         i_PlayerTurn.IsJumpTurn = false;
-                        // InvalidMove.Invoke(this, EventArgs.Empty);
                         isValid = false;
                     }
                 }
-
                 else
                 {
                     if (i_CurrentMove.CheckIsValidMove(i_PlayerTurn.GetShapeType()))
@@ -376,22 +293,15 @@ namespace GameLogic
                         isValid = true;
                         i_CurrentMove.MoveType = Move.eTypeOfMove.Regular;
                     }
-
                     else
                     {
                         isValid = false;
-
-                        // InvalidMove.Invoke(this, EventArgs.Empty);
                     }
                 }
             }
 
             return isValid;
         }
-
-
-
-
 
         private List<Move> getListOfJumpsForPiece(Player.eShapeType i_Shape, Square i_Square)
         {
@@ -412,7 +322,7 @@ namespace GameLogic
 
             return leggalJumpsForPiece;
         }
-
-
     }
 }
+
+

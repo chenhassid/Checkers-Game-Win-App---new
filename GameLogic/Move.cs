@@ -33,10 +33,10 @@ namespace GameLogic
 
         public eTypeOfMove MoveType
         {
-            get { return this.m_TypeOfMove; }
+            get { return m_TypeOfMove; }
             set
             {
-                this.m_TypeOfMove = value;
+                m_TypeOfMove = value;
             }
         }
 
@@ -73,6 +73,7 @@ namespace GameLogic
             {
                 isEqual = false;
             }
+
             if (this.FromSquare.Column != i_MovetoCompare.FromSquare.Column || this.ToSquare.Column != i_MovetoCompare.ToSquare.Column)
             {
                 isEqual = false;
@@ -84,7 +85,6 @@ namespace GameLogic
         public bool CheckIsValidMove(Player.eShapeType i_ShapeOfPlayer)
         {
             bool isValidMove = true;
-
 
             switch (i_ShapeOfPlayer)
             {
@@ -111,6 +111,7 @@ namespace GameLogic
                             }
                         }
                     }
+
                     break;
 
                 case Player.eShapeType.O:
@@ -118,7 +119,6 @@ namespace GameLogic
                     if (m_FromSquare.Type != Square.eSquareType.O && m_FromSquare.Type != Square.eSquareType.U)
                     {
                         isValidMove = false;
-
                     }
                     else
                     {
@@ -132,7 +132,6 @@ namespace GameLogic
                             {
                                 isValidMove = isValidDiagonalMove(Player.eShapeType.O);
                             }
-
                             else
                             {
                                 isValidMove = isValidDiagonalKingMove(Player.eShapeType.O);
@@ -148,8 +147,6 @@ namespace GameLogic
 
         public bool isValidDiagonalMove(Player.eShapeType i_Shape)
         {
-
-
             bool isValidMove = false;
 
             switch (i_Shape)
@@ -211,7 +208,6 @@ namespace GameLogic
             return isValidKingMove;
         }
 
-
         internal void MoveOnBoard(BoardGame i_BoardGame)
         {
             Square fromSquare = i_BoardGame.GetSquare(this.FromSquare.Row, this.FromSquare.Column);
@@ -225,13 +221,11 @@ namespace GameLogic
                     {
                         toSquare.Type = Square.eSquareType.K;
                     }
-
                     else
                         if (fromSquare.Type == Square.eSquareType.O && toSquare.Row == i_BoardGame.GetSize() - 1)
                     {
                         toSquare.Type = Square.eSquareType.U;
                     }
-
                     else
                     {
                         toSquare.Type = fromSquare.Type;
@@ -259,12 +253,12 @@ namespace GameLogic
                             toSquare.Type = fromSquare.Type;
                         }
                     }
+
                     fromSquare.Type = Square.eSquareType.None;
                     break;
             }
 
-
-            i_BoardGame.PrintBoard();
+         //   i_BoardGame.PrintBoard();
         }
 
         public void capturePieceOnBoard(BoardGame i_BoardGame)
@@ -301,7 +295,5 @@ namespace GameLogic
 
             i_BoardGame.GetSquare(rowOfCapturPiece, columnOfCapturPiece).Type = Square.eSquareType.None;
         }
-
     }
-
 }
